@@ -62,10 +62,9 @@ app.post('/api/analyze', async (req, res) => {
 
         let aiFeedback = "AI temporarily unavailable. Please try again later.";
 
-        try {
-            const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+        const modelName = process.env.GEMINI_MODEL || "gemini-1.5-flash";
 
-            const aiPrompt = `Analyze this GitHub profile for a recruiter: 
+        const aiPrompt = `Analyze this GitHub profile for a recruiter: 
         User: ${username}, Bio: ${user.bio}, Repos: ${repos.length}, Total Stars: ${impactScore}.
         Top Projects: ${repos.slice(0, 3).map(r => r.name).join(", ")}.
         
@@ -74,12 +73,15 @@ app.post('/api/analyze', async (req, res) => {
         2. Red Flag
         3. Growth Roadmap`;
 
-            const result = await model.generateContent(aiPrompt);
-            aiFeedback = result.response.text();
+            try {
+                const model = genAI.getGenerativeModel({ model: modelName });
 
-        } catch (aiError) {
-            console.error("AI ERROR:", aiError.message);
-        }
+                const result = await model.generateContent(aiPrompt);
+                aiFeedback = result.response.text();
+
+            } catch (err) {
+                console.error(`Model ${modelName} failed:`, err.message);
+            }
 
 
         res.json({
@@ -100,8 +102,6 @@ app.post('/api/analyze', async (req, res) => {
 
     }
     catch (err) {
-        console.log(process.env.GITHUB_TOKEN)
-        console.log(process.env.GEMINI_API_KEY)
         // This logs the specific failure to your terminal so we stop guessing
         if (err.response) {
             console.error("❌ API ERROR:", err.response.status, err.response.data);
