@@ -60,18 +60,20 @@ app.post('/api/analyze', async (req, res) => {
         ));
 
         // 3. AI Insights (The "Enhancer")
-        const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
-        const aiPrompt = `Analyze this GitHub profile for a recruiter: 
-            User: ${username}, Bio: ${user.bio}, Repos: ${repos.length}, Total Stars: ${impactScore}.
-            Top Projects: ${repos.slice(0, 3).map(r => r.name).join(", ")}.
+        // const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+        // const aiPrompt = `Analyze this GitHub profile for a recruiter: 
+        //     User: ${username}, Bio: ${user.bio}, Repos: ${repos.length}, Total Stars: ${impactScore}.
+        //     Top Projects: ${repos.slice(0, 3).map(r => r.name).join(", ")}.
             
-            Provide exactly three sections:
-            1. **Recruiter Sentiment**: How does this profile look to a hiring manager?
-            2. **Red Flag**: Identify the biggest weakness.
-            3. **Growth Roadmap**: Two specific steps to improve hireability.`;
+        //     Provide exactly three sections:
+        //     1. **Recruiter Sentiment**: How does this profile look to a hiring manager?
+        //     2. **Red Flag**: Identify the biggest weakness.
+        //     3. **Growth Roadmap**: Two specific steps to improve hireability.`;
 
-        const result = await model.generateContent(aiPrompt);
-        const aiFeedback = result.response.text();
+        // const result = await model.generateContent(aiPrompt);
+        // const aiFeedback = result.response.text();
+
+        const aiFeedback = "AI temporarily disabled due to quota limit.";
 
         res.json({
             profile: {
