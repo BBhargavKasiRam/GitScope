@@ -13,8 +13,12 @@ app.use(express.json());
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
+app.get('/', (req, res) => {
+  res.send("Backend is running");
+});
 
-app.post('/', async (req, res) => {
+
+app.post('/analyze', async (req, res) => {
     const { username } = req.body;
     const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 
