@@ -45,8 +45,8 @@ function App() {
           <form onSubmit={handleAnalyze} className="flex w-full md:w-auto gap-2">
             <div className="relative flex-grow md:w-80">
               <Search className="absolute left-3 top-3 text-slate-500" size={18} />
-              <input 
-                type="text" 
+              <input
+                type="text"
                 placeholder="GitHub Username..." 
                 className="w-full bg-slate-900 border border-slate-800 rounded-xl py-2.5 pl-10 pr-4 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-inner"
                 onChange={(e) => setUsername(e.target.value)}
