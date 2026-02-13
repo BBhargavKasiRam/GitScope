@@ -8,14 +8,13 @@ const app = express();
 
 // CORS configuration to allow your Vite frontend to talk to this backend
 app.use(cors());
-// app.options('*', cors());
 
 app.use(express.json());
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 app.get('/', (req, res) => {
-  res.send("Backend is running");
+    res.send("Backend is running");
 });
 
 
@@ -60,20 +59,28 @@ app.post('/api/analyze', async (req, res) => {
         ));
 
         // 3. AI Insights (The "Enhancer")
-        // const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
-        // const aiPrompt = `Analyze this GitHub profile for a recruiter: 
-        //     User: ${username}, Bio: ${user.bio}, Repos: ${repos.length}, Total Stars: ${impactScore}.
-        //     Top Projects: ${repos.slice(0, 3).map(r => r.name).join(", ")}.
-            
-        //     Provide exactly three sections:
-        //     1. **Recruiter Sentiment**: How does this profile look to a hiring manager?
-        //     2. **Red Flag**: Identify the biggest weakness.
-        //     3. **Growth Roadmap**: Two specific steps to improve hireability.`;
 
-        // const result = await model.generateContent(aiPrompt);
-        // const aiFeedback = result.response.text();
+        let aiFeedback = "AI temporarily unavailable. Please try again later.";
 
-        const aiFeedback = "AI temporarily disabled due to quota limit.";
+        try {
+            const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+
+            const aiPrompt = `Analyze this GitHub profile for a recruiter: 
+        User: ${username}, Bio: ${user.bio}, Repos: ${repos.length}, Total Stars: ${impactScore}.
+        Top Projects: ${repos.slice(0, 3).map(r => r.name).join(", ")}.
+        
+        Provide exactly three sections:
+        1. Recruiter Sentiment
+        2. Red Flag
+        3. Growth Roadmap`;
+
+            const result = await model.generateContent(aiPrompt);
+            aiFeedback = result.response.text();
+
+        } catch (aiError) {
+            console.error("AI ERROR:", aiError.message);
+        }
+
 
         res.json({
             profile: {
@@ -113,5 +120,5 @@ app.post('/api/analyze', async (req, res) => {
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
+    console.log(`🚀 Server running on port ${PORT}`);
 });
