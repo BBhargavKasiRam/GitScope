@@ -14,7 +14,7 @@ function App() {
     setLoading(true);
     setData(null);
     try {
-      const res = await axios.post('http://localhost:5000/api/analyze', { username });
+      const res = await axios.post('https://gitscope-a5rp.onrender.com', { username });
       setData(res.data);
     } catch (err) {
       alert("Analysis failed. Is your backend running on port 5000?");

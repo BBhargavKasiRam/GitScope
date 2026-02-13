@@ -8,7 +8,7 @@ const app = express();
 
 // CORS configuration to allow your Vite frontend to talk to this backend
 app.use(cors({
-    origin: 'https://gitscope-a5rp.onrender.com',
+    origin: 'https://gitscope-three.vercel.app/',
     methods: ['POST', 'GET'],
     credentials: true
 }));
@@ -18,7 +18,7 @@ app.use(express.json());
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 
-app.post('/api/analyze', async (req, res) => {
+app.post('/', async (req, res) => {
     const { username } = req.body;
     const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 
