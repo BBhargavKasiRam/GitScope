@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
 });
 
 
-app.post('/analyze', async (req, res) => {
+app.post('/api/analyze', async (req, res) => {
     const { username } = req.body;
     const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 
