@@ -12,7 +12,7 @@ function App() {
     setLoading(true);
     setData(null);
     try {
-      const res = await axios.post('https://gitscope-a5rp.onrender.com/api/analyze', { username }, {timeout: 60000});
+      const res = await axios.post('https://gitscope-production.up.railway.app/api/analyze', { username }, {timeout: 60000});
       setData(res.data);
     } catch (err) {
       console.error("Analysis Error:", err);
