@@ -8,7 +8,7 @@ const app = express();
 
 // CORS configuration to allow your Vite frontend to talk to this backend
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: 'https://gitscope-a5rp.onrender.com',
     methods: ['POST', 'GET'],
     credentials: true
 }));
