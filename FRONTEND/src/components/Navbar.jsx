@@ -4,10 +4,23 @@ import { Search, Loader2, Settings, HelpCircle, Grid } from 'lucide-react';
 const Navbar = ({ onAnalyze, loading }) => {
   const [username, setUsername] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (username.trim()) onAnalyze(username);
-  };
+  // Inside your Navbar.jsx, update the handleSubmit:
+
+const handleSubmit = (e) => {
+  e.preventDefault();
+  
+  let finalValue = username.trim();
+
+  // If the user pasted a URL, extract the username
+  // Matches: https://github.com/username or github.com/username
+  if (finalValue.includes('github.com/')) {
+    finalValue = finalValue.split('github.com/').pop().split('/')[0];
+  }
+  
+  if (finalValue) {
+    onAnalyze(finalValue);
+  }
+};
 
   return (
     <nav className="fixed top-0 w-full bg-white border-b border-gray-200 z-50 px-4 py-2 flex items-center justify-between">
