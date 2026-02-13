@@ -1,66 +1,42 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Search, Loader2, Github, Terminal } from 'lucide-react';
+import { Loader2, Terminal } from 'lucide-react';
 import AnalysisResults from './components/AnalysisResults';
+import Navbar from './components/Navbar'; // 1. Import Navbar
 
 function App() {
-  const [username, setUsername] = useState("");
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const handleAnalyze = async (e) => {
-    e.preventDefault();
-    if (!username) return;
+  // 2. Updated to receive username from Navbar
+  const handleAnalyze = async (username) => {
     setLoading(true);
     setData(null);
     try {
-      const res = await axios.post('https://gitscope-a5rp.onrender.com/api/analyze', { username }, {timeout: 60000});
+      const res = await axios.post('https://gitscope-a5rp.onrender.com/api/analyze', 
+        { username }, 
+        { timeout: 60000 }
+      );
       setData(res.data);
     } catch (err) {
-  console.error("FULL ERROR:", err);
-  res.status(500).json({
-    error: err.message,
-    details: err.response?.data
-  });}
+      console.error("FULL ERROR:", err);
+      // Note: Don't use res.status here, that's for backend. 
+      // Use an alert or a state-based error message for the UI.
+      alert("Failed to analyze user. Please try again.");
+    }
     setLoading(false);
   };
 
   return (
     <div className="min-h-screen bg-[#0d1117] text-slate-100 font-sans selection:bg-blue-500/30">
-      {/* Background Decor */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-24 -left-24 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl"></div>
         <div className="absolute top-1/2 -right-24 w-80 h-80 bg-emerald-600/5 rounded-full blur-3xl"></div>
       </div>
 
       <div className="relative max-w-6xl mx-auto px-6 py-12">
-        <header className="flex flex-col md:flex-row justify-between items-center gap-6 mb-16">
-          <div className="flex items-center gap-3">
-            <div className="bg-blue-600 p-2 rounded-lg">
-              <img rel="icon" type="image/svg+xml" href="/GitScope.svg" />
-            </div>
-            <h1 className="text-2xl font-black tracking-tight">Git<span className="text-blue-500">Scope</span></h1>
-          </div>
-
-          <form onSubmit={handleAnalyze} className="flex w-full md:w-auto gap-2">
-            <div className="relative flex-grow md:w-80">
-              <Search className="absolute left-3 top-3 text-slate-500" size={18} />
-              <input
-                type="text"
-                placeholder="GitHub Username..." 
-                className="w-full bg-slate-900 border border-slate-800 rounded-xl py-2.5 pl-10 pr-4 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-inner"
-                onChange={(e) => setUsername(e.target.value)}
-              />
-            </div>
-            <button 
-              type="submit" 
-              disabled={loading}
-              className="bg-blue-600 hover:bg-blue-500 disabled:bg-slate-700 px-6 py-2.5 rounded-xl font-bold transition-all shadow-lg shadow-blue-900/20"
-            >
-              {loading ? <Loader2 className="animate-spin" /> : "Analyze"}
-            </button>
-          </form>
-        </header>
+        {/* 3. Add Navbar here */}
+        <Navbar onAnalyze={handleAnalyze} loading={loading} />
 
         {loading && (
           <div className="flex flex-col items-center justify-center py-20 animate-pulse">
