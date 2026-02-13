@@ -14,10 +14,10 @@ function App() {
     setLoading(true);
     setData(null);
     try {
-      const res = await axios.post('https://gitscope-a5rp.onrender.com', { username });
+      const res = await axios.post('https://gitscope-a5rp.onrender.com', { username }, {timeout: 60000});
       setData(res.data);
     } catch (err) {
-      alert("Analysis failed. Is your backend running on port 5000?");
+      alert(err.response?.data?.error || err.message);
     }
     setLoading(false);
   };
