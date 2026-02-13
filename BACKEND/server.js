@@ -8,6 +8,7 @@ const app = express();
 
 // CORS configuration to allow your Vite frontend to talk to this backend
 app.use(cors());
+app.options('*', cors());
 
 app.use(express.json());
 
