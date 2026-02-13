@@ -27,7 +27,7 @@ const AnalysisResults = ({ data }) => {
           </p>
           
           <div className="inline-flex flex-col items-center">
-             <span className="text-7xl font-black text-blue-500 tracking-tighter">
+             <span className="text-5xl font-black text-blue-500 tracking-tighter">
                {data.score}
              </span>
              <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-slate-500 mt-[-10px]">
