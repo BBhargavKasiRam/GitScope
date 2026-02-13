@@ -37,9 +37,9 @@ function App() {
         <header className="flex flex-col md:flex-row justify-between items-center gap-6 mb-16">
           <div className="flex items-center gap-3">
             <div className="bg-blue-600 p-2 rounded-lg">
-              <link rel="icon" type="image/svg+xml" href="/GitScope.svg" />
+              <img rel="icon" type="image/svg+xml" href="/GitScope.svg" />
             </div>
-            <h1 className="text-2xl font-black tracking-tight">GIT<span className="text-blue-500">SCOPE</span></h1>
+            <h1 className="text-2xl font-black tracking-tight">Git<span className="text-blue-500">Scope</span></h1>
           </div>
 
           <form onSubmit={handleAnalyze} className="flex w-full md:w-auto gap-2">
