@@ -8,7 +8,7 @@ const app = express();
 
 // CORS configuration to allow your Vite frontend to talk to this backend
 app.use(cors({
-    origin: 'https://gitscope-three.vercel.app/',
+    origin: 'https://gitscope-three.vercel.app',
     methods: ['POST', 'GET'],
     credentials: true
 }));
