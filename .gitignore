@@ -1,0 +1,9 @@
+# Ignore node modules in both frontend and backend
+FRONTEND/node_modules/
+BACKEND/node_modules/
+
+# Ignore backend environment file
+BACKEND/.env
+
+# Optional good practice
+.DS_Store
