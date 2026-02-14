@@ -17,7 +17,6 @@ app.get('/', (req, res) => {
     res.send("Backend is running");
 });
 
-
 app.post('/api/analyze', async (req, res) => {
     const { username } = req.body;
     const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
@@ -119,6 +118,8 @@ app.post('/api/analyze', async (req, res) => {
 
 const PORT = process.env.PORT || 8080;
 
-app.listen(PORT, () => {
-    console.log(`🚀 Server running on port ${PORT}`);
-});
+// app.listen(PORT, () => {
+//     console.log(`🚀 Server running on port ${PORT}`);
+// });
+
+module.exports = app;
