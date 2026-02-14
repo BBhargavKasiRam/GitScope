@@ -82,7 +82,7 @@ This transforms raw repositories into strategic improvement insights.
 
 ### AI Integration
 
--   Google Gemini 1.5 Flash SDK
+-   Google Gemini 2.5 Flash lite
 
 ### Data Source
 
@@ -90,8 +90,8 @@ This transforms raw repositories into strategic improvement insights.
 
 ### Deployment
 
--   Frontend: Vercel
--   Backend: Render
+-   Frontend: Vercel-(Vite+React)
+-   Backend: Render-(Express)
 
 ------------------------------------------------------------------------
 
