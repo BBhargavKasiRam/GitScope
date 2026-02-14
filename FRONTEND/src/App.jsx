@@ -12,7 +12,7 @@ function App() {
     setLoading(true);
     setData(null);
     try {
-      const res = await axios.post(`${backendUrl}/api/analyze`, 
+      const res = await axios.post(`${backendUrl}api/analyze`, 
         { username }, 
         { timeout: 60000 }
     );
