@@ -11,18 +11,32 @@ function App() {
   const [loading, setLoading] = useState(false);
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
-  const handleAnalyze = async (username) => {
+  const handleAnalyze = async (inputUrl) => {
     setLoading(true);
     setData(null);
+
+    // 1. Extract username from the URL using Regex
+    // This looks for the string after github.com/ and ignores trailing slashes
+    const githubUsernameRegex = /(?:https?:\/\/)?(?:www\.)?github\.com\/([^\/\?]+)/;
+    const match = inputUrl.match(githubUsernameRegex);
+    
+    // Fallback: If it's not a URL, assume they just typed the username
+    const username = match ? match[1] : inputUrl.trim();
+
+    if (!username) {
+      console.error("Invalid GitHub URL or Username");
+      setLoading(false);
+      return;
+    }
+
     try {
       const res = await axios.post(`${backendUrl}/api/analyze`, 
-        { username }, 
+        { username }, // We still send the extracted 'username' to your existing backend
         { timeout: 60000 }
-    );
-    setData(res.data);
+      );
+      setData(res.data);
     } catch (err) {
       console.error("Analysis Error:", err);
-      // You could set an error state here to show a toast message
     }
     setLoading(false);
   };
