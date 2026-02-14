@@ -1,7 +1,7 @@
 # 🚀 GitScope --- AI-Powered Portfolio Intelligence
 
-🌐 **Live Demo:** https://gitscope-three.vercel.app/\
-🎥 **Video Walkthrough:** (Add Google Drive Link Here)
+🌐 **Live Demo:** https://gitscope-three.vercel.app/
+🎥 **Video Walkthrough:** https://drive.google.com/file/d/1yH0MqFYPbMH3904fFy7Sg3JZB2Shl1N2/view?usp=sharing
 
 ------------------------------------------------------------------------
 
@@ -114,6 +114,7 @@ Create a `.env` file inside `/backend`:
 PORT=5000
 GITHUB_TOKEN=your_personal_access_token
 GEMINI_API_KEY=your_google_ai_key
+GEMINI_MODEL=gemini-2.5-flash-lite
 ```
 
 ------------------------------------------------------------------------
