@@ -12,8 +12,11 @@ function App() {
     setLoading(true);
     setData(null);
     try {
-      const res = await axios.post('https://gitscope-production.up.railway.app/api/analyze', { username }, {timeout: 60000});
-      setData(res.data);
+      const res = await axios.post(`${backendUrl}/api/analyze`, 
+        { username }, 
+        { timeout: 60000 }
+    );
+    setData(res.data);
     } catch (err) {
       console.error("Analysis Error:", err);
       // You could set an error state here to show a toast message
