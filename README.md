@@ -1,7 +1,7 @@
 # 🚀 GitScope --- AI-Powered Portfolio Intelligence
 
 🌐 **Live Demo:** https://gitscope-three.vercel.app/
-🎥 **Video Walkthrough:** https://drive.google.com/file/d/1yH0MqFYPbMH3904fFy7Sg3JZB2Shl1N2/view?usp=sharing
+🎥 **Video Walkthrough:** [Video explanation](https://drive.google.com/file/d/1yH0MqFYPbMH3904fFy7Sg3JZB2Shl1N2/view?usp=sharing)
 
 ------------------------------------------------------------------------
 
