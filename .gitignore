@@ -4,6 +4,7 @@ BACKEND/node_modules/
 
 # Ignore backend environment file
 BACKEND/.env
+FRONTEND/.env
 
 # Optional good practice
 .DS_Store
