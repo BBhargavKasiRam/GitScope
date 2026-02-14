@@ -4,15 +4,18 @@ import { Terminal } from 'lucide-react';
 import Navbar from './components/Navbar';
 import AnalysisResults from './components/AnalysisResults';
 
+
+
 function App() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   const handleAnalyze = async (username) => {
     setLoading(true);
     setData(null);
     try {
-      const res = await axios.post(`${backendUrl}api/analyze`, 
+      const res = await axios.post(`${backendUrl}/api/analyze`, 
         { username }, 
         { timeout: 60000 }
     );
